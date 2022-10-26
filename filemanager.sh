@@ -21,11 +21,19 @@ showfiles(){
 }
 
 createfile(){
+	echo "Enter File Name"
+	read fName
+	touch $fName.txt
+	echo "Created $fName file"
 
 }
 
 #made instead of just using rm in menu to allow for future configuration regarding permissions in repo without requiring rewrites
 deletefile(){
+	echo "Enter Name of File to delete"
+	read fName
+	rm $fName
+	echo "File has been deleted"
 
 }
 
@@ -34,6 +42,9 @@ logfile(){
 }
 
 editfile(){
+	echo "Enter file to edit"
+	read fName
+	nano $fName
 
 }
 
