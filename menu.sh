@@ -10,7 +10,7 @@ filemenu(){
 	showfiles
 	#may want to redesign this map with the file selection first, followed by modification options
 	echo "Select from the following file management options:"
-	select action in "Create file" "Delete file" "Log out/in file" "Edit logged text file" "Restore previous state of logged file" "Quit"
+	select action in "Create file" "Delete file" "Log out/in file" "Edit logged out text file" "Restore previous state of logged file" "Quit"
 	do
 		case ${action} in
 			"Create file")
