@@ -2,7 +2,13 @@
 
 activerepo=./
 
-createrepo(){
+createrepo()
+{
+	echo Enter Repository Name
+	read rName
+	mkdir $rName
+	echo Created $rName Repository
+
 
 }
 
