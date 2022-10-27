@@ -10,35 +10,35 @@ filemenu(){
 	showfiles
 	#may want to redesign this map with the file selection first, followed by modification options
 	echo "Select from the following file management options:"
-	select action in "Create file" "Delete file" "Log out/in file" "Edit logged text file" "Restore previous state of logged file" "Quit"
+	select action in "Create file" "Delete file" "Check out/in file" "Edit checked out text file" "Restore previous state of checked out file" "Quit"
 	do
 		case ${action} in
 			"Create file")
 				createfile
-				echo -e "1) Create file\n2) Delete file\n3) Log out/in file\n4) Edit logged out text file\n5) Restore previous state of logged file\n6) Quit"
+				echo -e "1) Create file\n2) Delete file\n3) Check out/in file\n4) Edit checked out text file\n5) Restore previous state of checked out file\n6) Quit"
 				;;
 			"Delete file")
 				deletefile
-				echo -e "1) Create file\n2) Delete file\n3) Log out/in file\n4) Edit logged out text file\n5) Restore previous state of logged file\n6) Quit"
+				echo -e "1) Create file\n2) Delete file\n3) Check out/in file\n4) Edit checked out text file\n5) Restore previous state of checked out file\n6) Quit"
 				;;
-			"Log out/in file")
-				logfile
-				echo -e "1) Create file\n2) Delete file\n3) Log out/in file\n4) Edit logged out text file\n5) Restore previous state of logged file\n6) Quit"
+			"Check out/in file")
+				checkfile
+				echo -e "1) Create file\n2) Delete file\n3) Check out/in file\n4) Edit checked out text file\n5) Restore previous state of checked out file\n6) Quit"
 				;;
-			"Edit logged out text file")
+			"Edit checked out text file")
 				editfile
-				echo -e "1) Create file\n2) Delete file\n3) Log out/in file\n4) Edit logged out text file\n5) Restore previous state of logged file\n6) Quit"
+				echo -e "1) Create file\n2) Delete file\n3) Check out/in file\n4) Edit checked out text file\n5) Restore previous state of checked out file\n6) Quit"
 				;;
-			"Restore previous state of logged file")
+			"Restore previous state of checked out file")
 				rollfile
-				echo -e "1) Create file\n2) Delete file\n3) Log out/in file\n4) Edit logged out text file\n5) Restore previous state of logged file\n6) Quit"
+				echo -e "1) Create file\n2) Delete file\n3) Check out/in file\n4) Edit checked out text file\n5) Restore previous state of checked out file\n6) Quit"
 				;;
 			"Quit")
 				break
 				;;
 			*)
 				echo "Invalid input, please try again."
-				echo -e "1) Create file\n2) Delete file\n3) Log out/in file\n4) Edit logged out text file\n5) Restore previous state of logged file\n6) Quit"
+				echo -e "1) Create file\n2) Delete file\n3) Check out/in file\n4) Edit checked out text file\n5) Restore previous state of checked out file\n6) Quit"
 				;;
 		esac
 	done
@@ -117,8 +117,7 @@ logmenu(){
 }
 
 basemenu(){
-	echo -e "Your currently selected repository is $PWD.\n What would you like to do?"
-	#using $PWD as placeholder until proper repository function is added
+	echo -e "Your currently selected repository is $activerepo.\n What would you like to do?"
 	select action in "Manage files" "Configure repository" "View archiving options" "Manage logs" "Quit"
 	do
 		case ${action} in
