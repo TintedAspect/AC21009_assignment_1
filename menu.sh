@@ -152,4 +152,5 @@ basemenu(){
 	done
 }
 
+checkactiverepo
 basemenu
