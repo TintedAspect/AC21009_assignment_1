@@ -14,27 +14,27 @@ showfiles(){
 	local i="1"
 	while [ $i -lt $[$(ls -1q $activerepo | wc -l)+1] ]
 	do
-		echo -n $[$i]") "$(searchfile $i $activerepo)" - "
+		echo -n $i") "$(searchfile $i $activerepo)" - "
 		if [ -z "${checked[$i]}" ]
 		then
 			checked[$i]=0
 			echo -n "not "
 		fi
 		echo "checked out."
-		i=$[$i+1]
+		((i++))
 	done
 }
 
 createfile(){
 	read -p  "Please enter the name and file extension of the file you wish to create (for example, default.txt)" fname
-	touch $fname
+	(cd $activerepo ; touch $fname)
 	echo "$fname was successfully created."
 }
 
 #made instead of just using rm in menu to allow for future configuration regarding permissions in repo without requiring rewrites
 deletefile(){
 	read -p "Which file would you like to delete? " fname
-	rm $fname
+	(cd $activerepo ; rm $fname)
 	echo "$fname has been deleted."
 }
 
