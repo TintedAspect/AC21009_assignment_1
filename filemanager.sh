@@ -65,6 +65,8 @@ checkfile(){
 
 editfile(){
 	echo "Please select which file you'd like to edit out of the following list:"
+	read fName
+	nano $fName
 	
 }
 
