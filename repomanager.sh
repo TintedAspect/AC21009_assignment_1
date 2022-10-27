@@ -45,7 +45,8 @@ createrepo(){
 	fi
 }
 
-listrepos(){
+changerepo(){
+	echo "The current active repository is $activerepo. Please select the new active repository from the following list."
 	if [ ! -f repolist.txt ]
 	then
 		echo -e "$activerepo\n" >> repolist.txt
@@ -71,13 +72,4 @@ listrepos(){
 				;;
 		esac
 	done
-}
-
-changerepo(){
-	echo "The current active repository is $activerepo. Please select the new active repository from the following list."
-	listrepos
-}
-
-deleterepo(){
-
 }
