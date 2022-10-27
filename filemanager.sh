@@ -2,6 +2,7 @@
 
 . ./repomanager.sh
 . ./logger.sh
+. ./backup.sh
 
 #gives the $1th file within the directory $2 when files have been ordered by date modified
 searchfile(){
@@ -63,13 +64,22 @@ checkfile(){
 	esac
 }
 
+#Will change to checked In when that works, keeping read for now to test
 editfile(){
 	echo "Please select which file you'd like to edit out of the following list:"
 	read fName
-	nano $fName
+	backupFile
+	nano $activerepo/$fName
+	mv $fName $activerepo
+
 	
 }
 
-rollfile(){
+#Will change to checked In when that works, keeping read for now to test
+restoreFile(){
+	echo "Please select which file you'd like to restore out of the following list:"
+	read fName
+	restore
 
+	
 }
