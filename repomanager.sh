@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. ./archivemanager.sh
+
 #checks if the variable activerepo has a value, if it doesn't it sets it to match the address stored in the file activerepo.txt and also initialises that if it doesn't exist
 checkactiverepo(){
 	if [[ -n $(wc activerepo.txt) && -d $(cat activerepo.txt) ]]
