@@ -43,11 +43,13 @@ checkfile(){
 	case ${checked[$c]} in
 		"0")
 			echo "You have checked out "$(searchfile $c $activerepo)", enabling you to edit it."
-			log $(searchfile $c $activerepo)
+			checked[$c]=1
+			checklog $(searchfile $c $activerepo) 0
 			;;
 		"1")
 			echo "You have checked in "$(searchfile $c $activerepo)"."
-			log $(searchfile $c $activerepo)
+			checked[$c]=0
+			checklog $(searchfile $c $activerepo) 1
 			;;
 		"")
 			if [ -z $(searchfile $c $activerepo) ]
@@ -70,6 +72,7 @@ editfile(){
 	
 }
 
+#restores a file to a backed up state
 rollfile(){
 
 }
