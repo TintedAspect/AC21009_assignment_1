@@ -17,7 +17,7 @@ createrepo(){
 	read -p "Please enter the path to where you'd like to create this repository:" rpath
 	if [[ -d $rpath && ! -d "$rpath/$rname" ]]
 	then
-		( cd $rpath ; mkdir $rname ; cd $rname ; mkdir repoinfo ; cd ./repoinfo ; touch log )
+		( cd $rpath ; mkdir $rname ; cd $rname ; mkdir repoinfo ; cd repoinfo ; touch log.txt )
 		echo -e "$(cd $rpath/$rname ; pwd)\n" >> repolist.txt				#subshell used to allow relative paths to always be logged for absolute access
 		echo "Successfully created repository $rname at $rpath."
 	elif [[ -d "$rpath/$rname" ]]
@@ -25,7 +25,7 @@ createrepo(){
 		read -p "$rpath/$rname already exists, would you like to make the currently existing directory into a repository? (y/n)" ans
 		case $ans in
 			(y | Y) 
-				( cd $rpath/$rname ; mkdir repoinfo ; cd repoinfo ; touch log )
+				( cd $rpath/$rname ; mkdir repoinfo ; cd repoinfo ; touch log.txt )
 				echo -e "$(cd $rpath/$rname ; pwd)\n" >> repolist.txt
 				echo "Successfully turned directory $rname at $rpath into a repository."
 				;;
