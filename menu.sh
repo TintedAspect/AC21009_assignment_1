@@ -30,7 +30,7 @@ filemenu(){
 				echo -e "1) Create file\n2) Delete file\n3) Check out/in file\n4) Edit checked out text file\n5) Restore previous state of checked out file\n6) Quit"
 				;;
 			"Restore previous state of checked out file")
-				rollfile
+				restoreFile
 				echo -e "1) Create file\n2) Delete file\n3) Check out/in file\n4) Edit checked out text file\n5) Restore previous state of checked out file\n6) Quit"
 				;;
 			"Quit")
