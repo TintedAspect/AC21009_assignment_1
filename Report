@@ -1,0 +1,10 @@
+
+AC210009 Report
+
+As a task, our group has received an assignment about Bash scripting. The goal is to “is to write a set of shell scripts which offer some of the features found in existing codebase management systems. The aim is to support multiple developers working on the same project doing the following kinds of tasks:”
+
+For this assignment, we have decided to start off by making a multi-levelled select menu, so that it will be easier for the user to go through pre-made options. These options will be coded to do specific things, that we have been asked to do, such as making a repository, adding files etc. As a group, we have also decided to try and do some of the more advanced extensions, to further expand and get knowledge of BASH. Working with Bash did come with a few problems, such as:
+
+-	Deciding how to make a repository, since Github repositories are cloud-network based
+
+Our solution to this problem, was to work local. By making a repository on Github, it would create a folder, so that’s what we did on shell (mkdir), but locally.
