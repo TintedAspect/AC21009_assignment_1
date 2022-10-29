@@ -1,14 +1,14 @@
 #!/bin/bash
 
+. ./backup.sh
 . ./logger.sh
 . ./filemanager.sh
 . ./repomanager.sh
 . ./archivemanager.sh
 
 #decided to have different functions for levels of menus from the start to enable clarity if we move on to extensions
+#menu of file interaction options
 filemenu(){
-	showfiles
-	#may want to redesign this map with the file selection first, followed by modification options
 	echo "Select from the following file management options:"
 	select action in "Create file" "Delete file" "Check out/in file" "Edit checked out text file" "Restore previous state of checked out file" "Quit"
 	do
@@ -30,10 +30,11 @@ filemenu(){
 				echo -e "1) Create file\n2) Delete file\n3) Check out/in file\n4) Edit checked out text file\n5) Restore previous state of checked out file\n6) Quit"
 				;;
 			"Restore previous state of checked out file")
-				restoreFile
+				rollfile
 				echo -e "1) Create file\n2) Delete file\n3) Check out/in file\n4) Edit checked out text file\n5) Restore previous state of checked out file\n6) Quit"
 				;;
 			"Quit")
+				checkinall
 				break
 				;;
 			*)
@@ -43,10 +44,10 @@ filemenu(){
 		esac
 	done
 }
-
+ #menu of repository interaction options
 repomenu(){
 	echo "Select from the following repository management options:"
-	select action in "Create a new repository" "Change active repository" "Quit"
+	select action in "Create a new repository" "Change active repository" "Delete repository" "Quit"
 	do
 		case ${action} in
 			"Create a new repository")
@@ -57,6 +58,10 @@ repomenu(){
 				changerepo
 				echo -e "1) Create a new repository\n2) Change active repository\n3) Quit"
 				;;
+			"Delete repository")
+				delrepo
+				echo -e "1) Create a new repository\n2) Change active repository\n3) Quit"
+				;;
 			"Quit")
 				break
 				;;
@@ -67,13 +72,13 @@ repomenu(){
 		esac
 	done
 }
-
+#menu of archives
 archivemenu(){
 	echo "Select from the following archival options:"
 	select action in "Archive repository" "Restore repository from archive" "Quit"
 	do
 		case ${action} in
-			"Archive a repository")
+			"Archive repository")
 				archiverepo
 				echo -e "1) Archive repository\n2) Restore repository from archive\n3) Quit"
 				;;
@@ -91,7 +96,7 @@ archivemenu(){
 		esac
 	done
 }
-
+#menu that allows users to access the log
 logmenu(){
 	echo "Select from the following log options:"
 	select action in "View log of chosen file" "View full log" "Quit"
@@ -117,7 +122,12 @@ logmenu(){
 }
 
 basemenu(){
-	echo -e "Your currently selected repository is $activerepo.\n What would you like to do?"
+	if [ -n $activerepo ]
+	then
+		echo -e "Your currently selected repository is $activerepo.\n$(showfiles)\nWhat would you like to do?"
+	else
+		echo -e "You currently do not have an active repository.\nYou must create or assign an active repository before you can take any file management options.\n What would you like to do?"
+	fi
 	select action in "Manage files" "Configure repository" "View archiving options" "Manage logs" "Quit"
 	do
 		case ${action} in
